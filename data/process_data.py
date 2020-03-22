@@ -61,6 +61,9 @@ def clean_data(df):
     # drop rows in the 'related' column with a value = 2
     df = df[df['related'] != 2]
     
+    # drop the child_alone column as it only contains 1 class value
+    df.drop('child_alone', axis = 1, inplace = True)
+    
     return df
     
 def save_data(df, database_filename):
