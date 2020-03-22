@@ -2,10 +2,17 @@ import sys
 import pandas as pd
 from sqlalchemy import create_engine
 
+
 def load_data(messages_filepath, categories_filepath):
-    ''' 
-    Imports two csv files then combines them as a single dataframe
-    '''
+    """Load the messages and categores csv files and merge
+    
+    Args:
+    messages_filepath: string. CSV messages data.
+    categories_filepath: string. CSV categories data.
+       
+    Returns:
+    df: dataframe. Merged dataframe of messages and categories data.
+    """
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     
@@ -15,6 +22,16 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    """Clean the data by removing duplicates, invalid data and splitting 
+    text.
+    
+    Args:
+    df: dataframe. Merged dataframe of messages and categories data.
+       
+    Returns:
+    df: dataframe. Dataframe of cleaned data
+    """
+    
     # create a dataframe of the 36 individual category columns
     categories = df['categories'].str.split(';', expand=True)
     
@@ -41,12 +58,23 @@ def clean_data(df):
     # drop duplicates
     df.drop_duplicates(inplace=True)
     
+    # drop rows in the 'related' column with a value = 2
+    df = df[df['related'] != 2]
+    
     return df
     
 def save_data(df, database_filename):
+    """Save data to a SQLite database.
     
-    engine = create_engine('sqlite:///{}'.format(database_filename))
-    df.to_sql('InsertTableName', engine, index=False)  
+    Args:
+    df: dataframe. Dataframe of data to be saved to the database
+    database_filename: string. Database filename
+       
+    Returns:
+    None
+    """
+    engine = create_engine('sqlite:///DisasterMsgDB.db')
+    df.to_sql('DisasterMsgTable', engine, index=False, if_exists='replace')
 
 
 def main():
