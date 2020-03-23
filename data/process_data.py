@@ -76,7 +76,7 @@ def save_data(df, database_filename):
     Returns:
     None
     """
-    engine = create_engine('sqlite:///DisasterMsgDB.db')
+    engine = create_engine('sqlite:///' + database_filename)
     df.to_sql('DisasterMsgTable', engine, index=False, if_exists='replace')
 
 
