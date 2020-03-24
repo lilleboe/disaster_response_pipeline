@@ -5,11 +5,11 @@ The project contains code for a web app where an emergency worker can input a ne
 
 ## Running Instructions
 ### ***Run ETL Process***
-1. To run ETL pipeline that cleans data and stores in database:
+1. To run ETL pipeline that cleans data and stores in database:<br>
 `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
 
 ### ***Run ML Pipeline***
-1. To run ML pipeline that trains classifier and saves:
+1. To run ML pipeline that trains classifier and saves:<br>
 `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 
 ### ***Run Web Application***
@@ -29,11 +29,6 @@ The project contains code for a web app where an emergency worker can input a ne
 * **classifier.pkl**: Default pickle file used by the train_classifier.py file.
 * **run.py**: Code that runs the webb app
 
-## Web App UI
-
-***App Interface***
-
-***App Results Page***
 
 ## Note
 The data sourced for this program was provided by [Udacity](https://www.udacity.com) and [Figure Eight](https://www.figure-eight.com/).  The dataset is not very evenly distributed between postive and negative examples.  This can skew the results of the classifier and provide misleading accuracy.
