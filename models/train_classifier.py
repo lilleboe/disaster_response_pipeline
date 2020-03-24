@@ -1,6 +1,6 @@
 import sys
 import nltk
-nltk.download(['punkt', 'wordnet', 'stopwords'])
+nltk.download(['punkt', 'wordnet'])
 
 import re
 import numpy as np
@@ -9,8 +9,6 @@ import pickle
 
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-from nltk.corpus import stopwords
-from nltk.stem.porter import PorterStemmer
 
 from sklearn.pipeline import Pipeline
 from sklearn.datasets import make_multilabel_classification
@@ -45,8 +43,9 @@ def load_data(database_filepath):
     y = df.drop(['id', 'message', 'original', 'genre'], axis = 1)
     return X, y, list(y.columns.values)
 
+
 def tokenize(text):
-    """Method to normalize-->tokenize-->Stem
+    """Method to normalize-->tokenize-->lemmatize-->Stem
     
     Args:
     text: String. Message data
@@ -60,12 +59,20 @@ def tokenize(text):
     
     # Tokenize the text data
     tokens = word_tokenize(text)
+    
+    # initiate lemmatizer
+    lemmatizer = WordNetLemmatizer()
 
-    # Stem word tokens and remove stop words
-    stemmer = PorterStemmer()
-    stop_words = stopwords.words("english")
-    clean_tokens = [stemmer.stem(word) for word in tokens if word not in stop_words]
-
+    # iterate through each token
+    clean_tokens = []
+    for tok in tokens:
+        # lemmatize, normalize case, and remove leading/trailing white space
+        clean_tok = lemmatizer.lemmatize(tok)
+        clean_tok = re.sub(r"[^a-zA-Z0-9]", " ", clean_tok.lower())
+        clean_tok = clean_tok.strip()
+        
+        clean_tokens.append(clean_tok)
+    
     return clean_tokens
 
 
