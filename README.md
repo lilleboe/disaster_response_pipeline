@@ -13,10 +13,15 @@ The repository contains code for a web app where an emergency worker can input a
 `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 
 ### ***Run Web Application***
-1. Run the following command in the app directory:
+**Running the web app locally**
+1. Run the following command in the app directory:<br>
     `python run.py`
-2. Go to http://0.0.0.0:3001/
+2. In a browser navigate to http://localhost:3001/
 
+**Run the app from a Udacity VM**
+1. You need to find the workspace environmental variables with `env | grep WORK`, and you can open a new browser window and go to the address: <br>
+    `http://WORKSPACESPACEID-3001.WORKSPACEDOMAIN` <br>
+replacing WORKSPACEID and WORKSPACEDOMAIN with your values.
 
 ## Files
 * **ETL Pipeline Preparation.ipynb**: Jupyter notebook of code and analysis used in the development of process_data.py.
