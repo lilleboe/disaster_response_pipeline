@@ -31,7 +31,7 @@ replacing WORKSPACEID and WORKSPACEDOMAIN with your values.
 * **disaster_categories.csv**: Default disaster category data used by the process_data.py file.
 * **disaster_messages.csv**: Default disaster messages data used by the process_data.py file.
 * **DisasterResponse.db**: Default SQLLite database data used by process_data.py file and train_classifier.py
-* **classifier.pkl**: Default pickle file used by the train_classifier.py file.
+* **classifier.pkl**: Default pickle file used by the train_classifier.py file.  This file is created by the train_classifier.py clode and is not uploaded to the repository due to size limitations.
 * **run.py**: Code that runs the webb app
 
 
