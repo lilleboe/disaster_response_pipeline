@@ -27,7 +27,7 @@ replacing WORKSPACEID and WORKSPACEDOMAIN with your values.
 * **ETL Pipeline Preparation.ipynb**: Jupyter notebook of code and analysis used in the development of process_data.py.
 * **ML Pipeline Preparation.ipynb**: Jupyter notebook of code and analysis used in the development of train_classifier.py.
 * **process_data.py**: Takes disaster_categories.csv and disaster_messages.csv files (or other files specified as command line parameters), and it creates an SQLite database named DisasterResponse.db (or other DB specified as command line parameter) with the merged and cleaned data.
-* **train_classifier.py**: Takes the SQLite database created by process_data.py (DisasterResponse.db or another specified from the command line).  The data is used to train a machine learning model.  The code outputs a pickle file of the fitted model.
+* **train_classifier.py**: Takes the SQLite database created by process_data.py (DisasterResponse.db or another specified from the command line).  The data is used to train a machine learning model.  The code outputs a pickle file of the fitted model.  Please be aware that running this code may take a long time as it optimizes and trains a ML model.
 * **disaster_categories.csv**: Default disaster category data used by the process_data.py file.
 * **disaster_messages.csv**: Default disaster messages data used by the process_data.py file.
 * **DisasterResponse.db**: Default SQLLite database data used by process_data.py file and train_classifier.py
