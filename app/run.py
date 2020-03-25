@@ -47,6 +47,25 @@ def index():
     category = category.sum()
     category = category.sort_values(ascending = False)
     cat_names = list(category.index)
+    
+    # extract the sums of each category type
+    news = df[df['genre'] == 'news']
+    news = news.drop(['id', 'message', 'original', 'genre'], axis = 1)
+    news = news.sum()
+    news = news.sort_values(ascending = False)
+    news_names = list(news.index)
+    
+    direct = df[df['genre'] == 'direct']
+    direct = direct.drop(['id', 'message', 'original', 'genre'], axis = 1)
+    direct = direct.sum()
+    direct = direct.sort_values(ascending = False)
+    direct_names = list(direct.index)
+  
+    social = df[df['genre'] == 'social']
+    social = social.drop(['id', 'message', 'original', 'genre'], axis = 1)
+    social = social.sum()
+    social = social.sort_values(ascending = False)
+    social_names = list(social.index)
   
     # create visuals
     graphs = [
@@ -78,6 +97,36 @@ def index():
 
             'layout': {
                 'title': 'Messages by Category',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Category",
+                    'tickangle': -45
+                }
+            }
+        },
+		{	
+            'data': [
+                Bar(
+                    x=news_names,
+                    y=news,
+                    name='news'
+                ),
+                Bar(
+                    x=direct_names,
+                    y=direct,
+                    name='direct'
+                ),
+                Bar(
+                    x=social_names,
+                    y=social,
+                    name='social'
+                )
+            ],
+
+            'layout': {
+                'title': 'Messages by Genre and Category',
                 'yaxis': {
                     'title': "Count"
                 },
